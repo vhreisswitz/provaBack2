@@ -3,5 +3,6 @@ module.exports = {
     "password": "senai",
     "database": "lojaprodutos",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": 5433
 }
