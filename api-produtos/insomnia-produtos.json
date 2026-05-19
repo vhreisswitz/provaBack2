@@ -1,0 +1,138 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-05-19T12:35:00.000Z",
+  "__export_source": "insomnia.desktop.app:v10.2.0",
+  "resources": [
+    {
+      "_id": "wrk_api_produtos",
+      "_type": "workspace",
+      "name": "API Produtos",
+      "description": "Rotas para testar o CRUD de produtos.",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_api_produtos",
+      "_type": "environment",
+      "parentId": "wrk_api_produtos",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3333"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1
+    },
+    {
+      "_id": "fld_produtos",
+      "_type": "request_group",
+      "parentId": "wrk_api_produtos",
+      "name": "Produtos",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 1
+    },
+    {
+      "_id": "req_cadastrar_produto",
+      "_type": "request",
+      "parentId": "fld_produtos",
+      "name": "Cadastrar produto",
+      "method": "POST",
+      "url": "{{ _.base_url }}/produtos",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Mouse\",\n  \"preco\": 59.9,\n  \"quantidade\": 10\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 1,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_listar_produtos",
+      "_type": "request",
+      "parentId": "fld_produtos",
+      "name": "Listar produtos",
+      "method": "GET",
+      "url": "{{ _.base_url }}/produtos",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 2,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_atualizar_produto",
+      "_type": "request",
+      "parentId": "fld_produtos",
+      "name": "Atualizar produto",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/produtos/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Mouse Gamer\",\n  \"preco\": 79.9,\n  \"quantidade\": 8\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 3,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    },
+    {
+      "_id": "req_remover_produto",
+      "_type": "request",
+      "parentId": "fld_produtos",
+      "name": "Remover produto",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/produtos/1",
+      "body": {},
+      "headers": [],
+      "parameters": [],
+      "authentication": {},
+      "metaSortKey": 4,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global"
+    }
+  ]
+}
