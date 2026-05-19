@@ -1,9 +1,7 @@
-{
-  "development": {
-    "username": "root",
+module.exports = {
+    "username": "postgres",
     "password": "senai",
-    "database": "database_development",
+    "database": "lojaprodutos",
     "host": "localhost",
-    "dialect": "mysql"
-  }
+    "dialect": "postgres"
 }
