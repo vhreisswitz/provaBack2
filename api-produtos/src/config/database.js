@@ -7,6 +7,7 @@ const config = {
   host: process.env.DB_HOST || "127.0.0.1",
   port: Number(process.env.DB_PORT) || 5433,
   dialect: "postgres",
+  logging: false,
 };
 
 module.exports = {

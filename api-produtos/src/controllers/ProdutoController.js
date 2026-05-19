@@ -1,5 +1,9 @@
 const { Produto } = require("../models");
 
+function idInvalido(id) {
+  return Number.isNaN(Number(id)) || Number(id) <= 0;
+}
+
 class ProdutoController {
   async store(req, res) {
     try {
@@ -35,6 +39,10 @@ class ProdutoController {
     try {
       const { id } = req.params;
 
+      if (idInvalido(id)) {
+        return res.status(400).json({ erro: "ID invalido." });
+      }
+
       const produto = await Produto.findByPk(id);
 
       if (!produto) {
@@ -51,6 +59,10 @@ class ProdutoController {
     try {
       const { id } = req.params;
       const { nome, preco, quantidade } = req.body;
+
+      if (idInvalido(id)) {
+        return res.status(400).json({ erro: "ID invalido." });
+      }
 
       if (!nome || preco === undefined || quantidade === undefined) {
         return res.status(400).json({
@@ -75,6 +87,10 @@ class ProdutoController {
   async delete(req, res) {
     try {
       const { id } = req.params;
+
+      if (idInvalido(id)) {
+        return res.status(400).json({ erro: "ID invalido." });
+      }
 
       const produto = await Produto.findByPk(id);
 
