@@ -4,15 +4,10 @@ API CRUD de produtos usando Express, Sequelize e PostgreSQL.
 
 ## Configuracao
 
-As configuracoes padrao estao em `src/config/database.js`:
+As configuracoes do banco ficam em variaveis de ambiente.
+Copie o arquivo `.env.example` para `.env` e preencha os valores somente na sua maquina.
 
-- usuario: `postgres`
-- senha: `senai`
-- banco: `lojaprodutos`
-- host: `127.0.0.1`
-- porta: `5433`
-
-Se o seu PostgreSQL usar dados diferentes, configure as variaveis do `.env.example` no terminal antes de rodar os comandos.
+O arquivo `.env` esta protegido pelo `.gitignore` e nao deve ser enviado para o GitHub.
 
 ## Comandos
 
