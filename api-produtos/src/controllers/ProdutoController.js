@@ -7,19 +7,24 @@ function idInvalido(id) {
 class ProdutoController {
   async store(req, res) {
     try {
+      // pega nome, preco e quantidade enviados pelo body
       const { nome, preco, quantidade } = req.body;
 
+      // valida se os campos foram preenchidos
       if (!nome || preco === undefined || quantidade === undefined) {
         return res.status(400).json({
           erro: "Informe nome, preco e quantidade.",
         });
       }
 
+      // cria produto no banco
       const produto = await Produto.create({ nome, preco, quantidade });
 
+      // retorna produto criado
       return res.status(201).json(produto);
     } catch (error) {
-      return res.status(400).json({ erro: "Erro ao cadastrar produto." });
+      // retorna erro interno do servidor
+      return res.status(500).json({ erro: "Erro ao cadastrar produto." });
     }
   }
 

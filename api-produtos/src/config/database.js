@@ -1,12 +1,12 @@
-require("dotenv").config({ quiet: true });
+require("dotenv").config();
 
 const config = {
-  username: process.env.DB_USER || "postgres",
-  password: process.env.DB_PASS || "senai",
-  database: process.env.DB_NAME || "lojaprodutos",
-  host: process.env.DB_HOST || "127.0.0.1",
-  port: Number(process.env.DB_PORT) || 5433,
-  dialect: "postgres",
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  port: process.env.DB_PORT,
   logging: false,
 };
 
