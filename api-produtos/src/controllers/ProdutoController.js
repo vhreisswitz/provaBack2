@@ -1,4 +1,4 @@
-const { ProdutosService, ServiceError } = require("../services/produtos.service");
+const { ProdutosService, ServiceError } = require("../services/produtosService");
 
 class ProdutoController {
   async store(req, res) {
