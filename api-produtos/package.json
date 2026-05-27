@@ -5,6 +5,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "jest": "^30.4.2",
     "pg": "^8.21.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.8"
@@ -18,7 +19,7 @@
     "migrate": "sequelize-cli db:migrate",
     "db:test": "node src/database/testConnection.js",
     "start": "node src/server.js",
-    "test": "node -e \"require('./src/app'); console.log('app ok')\""
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
