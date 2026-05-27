@@ -1,40 +1,21 @@
-// const { Produto } = require("../models");
-const Produto = require("../services/produtos.service");
-
-function idInvalido(id) {
-  return Number.isNaN(Number(id)) || Number(id) <= 0;
-}
+const { ProdutosService, ServiceError } = require("../services/produtos.service");
 
 class ProdutoController {
   async store(req, res) {
     try {
-      // pega nome, preco e quantidade enviados pelo body
-      const { nome, preco, quantidade } = req.body;
-
-      // valida se os campos foram preenchidos
-      if (!nome || preco === undefined || quantidade === undefined) {
-        return res.status(400).json({
-          erro: "Informe nome, preco e quantidade.",
-        });
-      }
-
-      // cria produto no banco
-      const produto = await Produto.create({ nome, preco, quantidade });
-
-      // retorna produto criado
+      const produto = await ProdutosService.criar(req.body);
       return res.status(201).json(produto);
     } catch (error) {
-      // retorna erro interno do servidor
+      if (error instanceof ServiceError) {
+        return res.status(error.statusCode).json({ erro: error.message });
+      }
       return res.status(500).json({ erro: "Erro ao cadastrar produto." });
     }
   }
 
   async index(req, res) {
     try {
-      const produtos = await Produto.findAll({
-        order: [["id", "ASC"]],
-      });
-
+      const produtos = await ProdutosService.listar();
       return res.json(produtos);
     } catch (error) {
       return res.status(500).json({ erro: "Erro ao listar produtos." });
@@ -43,72 +24,37 @@ class ProdutoController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-
-      if (idInvalido(id)) {
-        return res.status(400).json({ erro: "ID invalido." });
-      }
-
-      const produto = await Produto.findByPk(id);
-
-      if (!produto) {
-        return res.status(404).json({ erro: "Produto nao encontrado." });
-      }
-
+      const produto = await ProdutosService.buscarPorId(req.params.id);
       return res.json(produto);
     } catch (error) {
+      if (error instanceof ServiceError) {
+        return res.status(error.statusCode).json({ erro: error.message });
+      }
       return res.status(500).json({ erro: "Erro ao buscar produto." });
     }
   }
 
   async update(req, res) {
     try {
-      const { id } = req.params;
-      const { nome, preco, quantidade } = req.body;
-
-      if (idInvalido(id)) {
-        return res.status(400).json({ erro: "ID invalido." });
-      }
-
-      if (!nome || preco === undefined || quantidade === undefined) {
-        return res.status(400).json({
-          erro: "Informe nome, preco e quantidade.",
-        });
-      }
-
-      const produto = await Produto.findByPk(id);
-
-      if (!produto) {
-        return res.status(404).json({ erro: "Produto nao encontrado." });
-      }
-
-      await produto.update({ nome, preco, quantidade });
-
+      const produto = await ProdutosService.atualizar(req.params.id, req.body);
       return res.json(produto);
     } catch (error) {
-      return res.status(400).json({ erro: "Erro ao atualizar produto." });
+      if (error instanceof ServiceError) {
+        return res.status(error.statusCode).json({ erro: error.message });
+      }
+      return res.status(500).json({ erro: "Erro ao atualizar produto." });
     }
   }
 
   async delete(req, res) {
     try {
-      const { id } = req.params;
-
-      if (idInvalido(id)) {
-        return res.status(400).json({ erro: "ID invalido." });
-      }
-
-      const produto = await Produto.findByPk(id);
-
-      if (!produto) {
-        return res.status(404).json({ erro: "Produto nao encontrado." });
-      }
-
-      await produto.destroy();
-
+      await ProdutosService.remover(req.params.id);
       return res.status(204).send();
     } catch (error) {
-      return res.status(400).json({ erro: "Erro ao remover produto." });
+      if (error instanceof ServiceError) {
+        return res.status(error.statusCode).json({ erro: error.message });
+      }
+      return res.status(500).json({ erro: "Erro ao remover produto." });
     }
   }
 }
