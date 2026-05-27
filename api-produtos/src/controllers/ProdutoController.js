@@ -1,4 +1,5 @@
-const { Produto } = require("../models");
+// const { Produto } = require("../models");
+const Produto = require("../services/produtos.service");
 
 function idInvalido(id) {
   return Number.isNaN(Number(id)) || Number(id) <= 0;
